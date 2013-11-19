@@ -1,0 +1,10 @@
+<platform xmlns="http://ns.adobe.com/air/extension/3.7"> 
+<sdkVersion>6.0.0</sdkVersion> 
+        <linkerOptions> 
+                <option>-macosx_version_min 10.6</option>
+                <option>-framework Pinterest</option>
+        </linkerOptions>
+        <packagedDependencies> 
+                <packagedDependency>Pinterest.framework</packagedDependency> 
+        </packagedDependencies>
+</platform>
