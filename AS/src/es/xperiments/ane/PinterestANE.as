@@ -119,10 +119,8 @@ package es.xperiments.ane
 		 */
 		public static function get isSupported():Boolean
 		{
-			if ( Capabilities.os.indexOf( 'iPhone' ) == -1 && Capabilities.os.indexOf( 'iPad' ) == -1 && Capabilities.os.indexOf( 'iPod' ) == -1 )
-			{
-				return false;
-			}
+
+				if( Capabilities.os.indexOf( 'iPhone' ) == -1 && Capabilities.os.indexOf( 'iPad' ) == -1 && Capabilities.os.indexOf( 'iPod' ) == -1 && Capabilities.manufacturer != "Android Linux" ){ return false }
 
 			return true;
 		}

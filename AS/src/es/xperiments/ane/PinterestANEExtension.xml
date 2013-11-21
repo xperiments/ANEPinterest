@@ -1,6 +1,6 @@
 <extension xmlns="http://ns.adobe.com/air/extension/3.7">
 	<id>es.xperiments.ane.PinterestANE</id>
-	<versionNumber>0.0.58</versionNumber>
+	<versionNumber>0.0.65</versionNumber>
 		<platforms> 
 			<platform name="iPhone-ARM">
 				<applicationDeployment>
