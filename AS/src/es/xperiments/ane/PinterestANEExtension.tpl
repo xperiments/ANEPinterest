@@ -16,8 +16,17 @@
 					<finalizer>PinterestANEExtensionFinalizer</finalizer>
 				</applicationDeployment>
 			</platform>
+
+			<platform name="Android-ARM">
+				<applicationDeployment>
+					<nativeLibrary>ANEPinterest.jar</nativeLibrary>
+					<initializer>es.xperiments.ane.pinterest.ANEPinterestExtension</initializer>
+					<finalizer>es.xperiments.ane.pinterest.ANEPinterestExtension</finalizer>
+				</applicationDeployment>
+			</platform>
+
 			<platform name="default"> 
-   				<applicationDeployment/>
+				<applicationDeployment/>
 			</platform>			
 	</platforms>
 </extension>

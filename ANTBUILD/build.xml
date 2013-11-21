@@ -12,8 +12,10 @@
     	<echo>CLEANING...</echo>
         <delete dir="${app.builddir}"/>
         <delete dir="${app.releasedir}"/>
+        <delete dir="${app.rootdir}/Android-ARM"/>
         <mkdir dir="${app.builddir}"/>
-        <mkdir dir="${app.releasedir}"/> 
+        <mkdir dir="${app.releasedir}"/>
+        <mkdir dir="${app.rootdir}/Android-ARM"/> 
         <delete file="${app.rootdir}/library.swf"/>
         <delete file="${app.rootdir}/${app.swcfilename}"/>
         <echo>DONE -> CLEANING PROJECT</echo>
@@ -33,6 +35,15 @@
         <copy file="${app.builddir}/${app.swcfilename}" tofile="${app.rootdir}/${app.swcfilename}"/>
         <unzip src="${app.builddir}/${app.swcfilename}" dest="${app.rootdir}"/>
         <delete file="${app.rootdir}/catalog.xml"/>
+
+        <echo>EXTRACTING ANDROID RESOURCES...</echo>
+
+
+        <copy file="${app.rootdir}/library.swf" tofile="${app.rootdir}/Android-ARM/library.swf"/>
+        <copy file="${app.rootdir}/ANDROID/PinterestANE/ANEPinterest.jar" tofile="${app.rootdir}/Android-ARM/ANEPinterest.jar"/>
+        <copy todir="${app.rootdir}/Android-ARM/res">
+            <fileset dir="${app.rootdir}/ANDROID/PinterestANE/res"/>
+        </copy>
         <echo>GENERATING ANE EXTENSION...</echo>
         <exec executable="${ADT}" failonerror="true" output="compile.log">
                     <arg line="
@@ -40,6 +51,7 @@
                         -swc ../${app.swcfilename}
                         -platform iPhone-ARM -platformoptions ./platform_ARM.xml Pinterest.framework -C ../ library.swf -C ../IOS/PinterestANE/DerivedData/PinterestANE/Build/Products/Release-iphoneos libPinterestANE.a
                         -platform iPhone-x86 -platformoptions ./platform_i386.xml Pinterest.framework -C ../ library.swf -C ../IOS/PinterestANE/DerivedData/PinterestANE/Build/Products/Debug-iphonesimulator libPinterestANE.a
+                        -platform Android-ARM -C ../Android-ARM .
                         -platform default -C ../ library.swf
 
                     "/>

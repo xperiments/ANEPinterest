@@ -1,6 +1,6 @@
 <extension xmlns="http://ns.adobe.com/air/extension/3.7">
 	<id>es.xperiments.ane.PinterestANE</id>
-	<versionNumber>0.0.47</versionNumber>
+	<versionNumber>0.0.58</versionNumber>
 		<platforms> 
 			<platform name="iPhone-ARM">
 				<applicationDeployment>
@@ -16,8 +16,17 @@
 					<finalizer>PinterestANEExtensionFinalizer</finalizer>
 				</applicationDeployment>
 			</platform>
+
+			<platform name="Android-ARM">
+				<applicationDeployment>
+					<nativeLibrary>ANEPinterest.jar</nativeLibrary>
+					<initializer>es.xperiments.ane.pinterest.ANEPinterestExtension</initializer>
+					<finalizer>es.xperiments.ane.pinterest.ANEPinterestExtension</finalizer>
+				</applicationDeployment>
+			</platform>
+
 			<platform name="default"> 
-   				<applicationDeployment/>
+				<applicationDeployment/>
 			</platform>			
 	</platforms>
 </extension>
