@@ -63,6 +63,7 @@ package es.xperiments.ane
 		*/
 		public static function initWithClientId( clientId:String = ""):void
 		{
+			trace( 'HOOOLA', __context )
 			if( clientId=="" ) throw new Error("PinterestANE initWithClientId needs a clientId")
 			__context.call( 'initWithClientId',clientId) ;
 			_hasID = true;

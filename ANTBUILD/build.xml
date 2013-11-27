@@ -12,7 +12,7 @@
     	<echo>CLEANING...</echo>
         <delete dir="${app.builddir}"/>
         <delete dir="${app.releasedir}"/>
-        <delete dir="${app.rootdir}/Android-ARM"/>
+        
         <mkdir dir="${app.builddir}"/>
         <mkdir dir="${app.releasedir}"/>
         <mkdir dir="${app.rootdir}/Android-ARM"/> 
@@ -21,6 +21,37 @@
         <echo>DONE -> CLEANING PROJECT</echo>
     </target>
     
+    <!-- Android -->
+    <target name="android" description="Build Android Library">
+        <delete dir="../android/temp"/>
+        <mkdir dir="../android/temp/classes"/>
+
+        <echo message="Using Java version ${ant.java.version}."/>
+
+        <javac source="1.6" srcdir="../android/src" destdir="../android/temp/classes" includeantruntime="false" debug="${ANDROID_DEBUG}">
+            <classpath>
+                <pathelement location="${android.sdk}/android.jar"/>
+                <pathelement location="../android/libs/FlashRuntimeExtensions.jar"/>
+                <pathelement location="../android/libs/android-support-v4.jar"/>
+                <pathelement location="../android/libs/pinit-sdk-1.0.jar"/>
+
+            </classpath>
+        </javac>
+
+        <mkdir dir="../android/temp/zip"/>
+        <unzip src="../android/libs/pinit-sdk-1.0.jar" dest="../android/temp/zip"/>
+        <unzip src="../android/libs/android-support-v4.jar" dest="../android/temp/zip"/>
+        <copydir src="../android/temp/zip" dest="../android/temp/classes"/>
+
+        <mkdir dir="../temp/android/"/>
+        <jar basedir="../android/temp/classes" destfile="../Android-ARM/ANEPinterest.jar"/>
+        <copy todir="../temp/android/res/">
+            <fileset dir="../android/res"/>
+        </copy>
+        <delete dir="../android/temp"/>
+    </target>
+
+
     <target name="build-extension" depends="clean,update.BuildNumber,update.Descriptor">
     	<echo>BUILDING SWC...</echo>
         <exec executable="${ACOMPC}">
@@ -40,9 +71,9 @@
 
 
         <copy file="${app.rootdir}/library.swf" tofile="${app.rootdir}/Android-ARM/library.swf"/>
-        <copy file="${app.rootdir}/ANDROID/PinterestANE/ANEPinterest.jar" tofile="${app.rootdir}/Android-ARM/ANEPinterest.jar"/>
+        
         <copy todir="${app.rootdir}/Android-ARM/res">
-            <fileset dir="${app.rootdir}/ANDROID/PinterestANE/res"/>
+            <fileset dir="${app.rootdir}/android/res"/>
         </copy>
         <echo>GENERATING ANE EXTENSION...</echo>
         <exec executable="${ADT}" failonerror="true" output="compile.log">
@@ -51,7 +82,7 @@
                         -swc ../${app.swcfilename}
                         -platform iPhone-ARM -platformoptions ./platform_ARM.xml Pinterest.framework -C ../ library.swf -C ../IOS/PinterestANE/DerivedData/PinterestANE/Build/Products/Release-iphoneos libPinterestANE.a
                         -platform iPhone-x86 -platformoptions ./platform_i386.xml Pinterest.framework -C ../ library.swf -C ../IOS/PinterestANE/DerivedData/PinterestANE/Build/Products/Debug-iphonesimulator libPinterestANE.a
-                        -platform Android-ARM -C ../Android-ARM .
+                        -platform Android-ARM -C ../Android-ARM library.swf ANEPinterest.jar
                         -platform default -C ../ library.swf
 
                     "/>

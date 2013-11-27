@@ -1,4 +1,4 @@
-<extension xmlns="http://ns.adobe.com/air/extension/3.7">
+<extension xmlns="http://ns.adobe.com/air/extension/3.9">
 	<id>es.xperiments.ane.PinterestANE</id>
 	<versionNumber>@majorVersion@.@minorVersion@.@buildNumber@</versionNumber>
 		<platforms> 
@@ -20,8 +20,8 @@
 			<platform name="Android-ARM">
 				<applicationDeployment>
 					<nativeLibrary>ANEPinterest.jar</nativeLibrary>
-					<initializer>es.xperiments.ane.pinterest.ANEPinterestExtension</initializer>
-					<finalizer>es.xperiments.ane.pinterest.ANEPinterestExtension</finalizer>
+					<initializer>es.xperiments.ane.PinterestANE</initializer>
+					<finalizer>es.xperiments.ane.PinterestANE</finalizer>
 				</applicationDeployment>
 			</platform>
 

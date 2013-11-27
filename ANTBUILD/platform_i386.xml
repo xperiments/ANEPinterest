@@ -1,4 +1,4 @@
-<platform xmlns="http://ns.adobe.com/air/extension/3.7"> 
+<platform xmlns="http://ns.adobe.com/air/extension/3.9"> 
 <sdkVersion>6.0.0</sdkVersion> 
         <linkerOptions> 
                 <option>-macosx_version_min 10.6</option>
